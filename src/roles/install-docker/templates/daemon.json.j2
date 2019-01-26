@@ -1,0 +1,7 @@
+{ 
+    "insecure-registries": [
+        {% for registry in groups.docker_hubs %}
+            "{{ registry }}:5000",
+        {% endfor %}
+    ] 
+}

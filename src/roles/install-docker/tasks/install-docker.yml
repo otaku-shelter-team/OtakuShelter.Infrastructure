@@ -24,3 +24,6 @@
 
 - name: apt-get install docker-ce
   apt: name=docker-ce state=latest
+
+- name: insecure docker hub
+  template: src=daemon.json.j2 dest=/etc/docker/daemon.json mode=0755

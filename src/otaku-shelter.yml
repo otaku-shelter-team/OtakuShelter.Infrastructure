@@ -5,3 +5,4 @@
 - import_playbook: playbooks/manga-databases.yml
 - import_playbook: playbooks/manga-services.yml
 - import_playbook: playbooks/manga-loadbalancers.yml
+- import_playbook: playbooks/docker-hubs.yml

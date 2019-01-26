@@ -5,7 +5,7 @@
 192.168.1.88
 
 [teamcity_agents]
-192.168.1.89
+192.168.1.95
 
 [manga_databases]
 192.168.1.90
@@ -16,3 +16,6 @@
 
 [manga_loadbalancers]
 192.168.1.93
+
+[docker_hubs]
+192.168.1.94
