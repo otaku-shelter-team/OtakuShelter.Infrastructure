@@ -4,3 +4,4 @@
 - import_playbook: playbooks/teamcity-agents.yml
 - import_playbook: playbooks/manga-databases.yml
 - import_playbook: playbooks/manga-services.yml
+- import_playbook: playbooks/manga-loadbalancers.yml

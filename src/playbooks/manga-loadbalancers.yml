@@ -1,0 +1,15 @@
+---
+- hosts: manga_loadbalancers
+  become: true
+  remote_user: ansible
+  become_method: su
+  vars:
+    ansible_become_pass: root
+  roles:
+  - install-docker
+  - { 
+      role: install-nginx,
+      nginx_path: /manga/loadbalancer,
+      nginx_upstream: manga_loadbalancer,
+      nginx_servers: "{{ groups.manga_services }}"
+    }
