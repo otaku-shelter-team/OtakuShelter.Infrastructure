@@ -1,0 +1,9 @@
+---
+- name: mkdir {{ teamcity_agent_path }}
+  file: path={{ teamcity_agent_path }} state=directory
+
+- name: cp docker-compose.yml
+  template: src=docker-compose.yml.j2 dest={{ teamcity_agent_path }}/docker-compose.yml mode=0755
+
+- name: docker-compose up
+  docker_service: project_src={{ teamcity_agent_path }} state=present restarted=true

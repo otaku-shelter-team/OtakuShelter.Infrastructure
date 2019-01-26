@@ -1,0 +1,15 @@
+---
+- hosts: all:!ansible
+  gather_facts: false
+  become: true
+  remote_user: ansible
+  become_method: su
+  vars:
+    ansible_become_pass: root
+  tasks:
+  - name: apt-get install python-minimal
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+    changed_when: false
+    
+  - name: apt-get install python-pip
+    apt: name=python-pip state=latest
