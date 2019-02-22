@@ -1,7 +1,0 @@
-version: "3.1"
-services:
-  {{ teamcity_agent_service }}:
-    image: jetbrains/teamcity-agent
-    environment:
-      - SERVER_URL={{ teamcity_agent_server_url }}
-      - AGENT_NAME={{ teamcity_agent_name }}

@@ -1,9 +1,0 @@
----
-- hosts: manga_services
-  become: true
-  remote_user: ansible
-  become_method: su
-  vars:
-    ansible_become_pass: root
-  roles:
-  - install-docker

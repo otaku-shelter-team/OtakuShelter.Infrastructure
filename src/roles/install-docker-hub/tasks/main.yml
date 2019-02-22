@@ -1,9 +1,0 @@
----
-- name: mkdir {{ dockerhub_path }}
-  file: path={{ dockerhub_path }}/{{ dockerhub_data }} state=directory
-
-- name: cp docker-compose.yml
-  template: src=docker-compose.yml.j2 dest={{ dockerhub_path }}/docker-compose.yml mode=0755
-
-- name: docker-compose up
-  docker_service: project_src={{ dockerhub_path }} state=present restarted=true
