@@ -1,24 +1,24 @@
 ---
-- hosts: {{ otakushelter_hosts }}
+- hosts: "{{ otakushelter_hosts }}"
 
   tasks:
   - name: Setting previous build number
     set_fact: 
-      otakushelter_prev_build_number: {{ otakushelter_build_number | int - 1 }}   
+      otakushelter_prev_build_number: "{{ otakushelter_build_number | int - 1 }}"
 
   - name: Stopping {{ otakushelter_container }} container
     docker_container:
-      name: {{ otakushelter_container }}
+      name: "{{ otakushelter_container }}"
       state: stopped
 
   - name: Remove {{ otakushelter_image }}:1.0.{{ otakushelter_prev_build_number }} image
     docker_image:
-      name: {{ otakushelter_image }}
+      name: "{{ otakushelter_image }}"
       tag: "1.0.{{ otakushelter_prev_build_number }}"
       state: absent
 
   - name: Container present
     docker_container:
-      name: {{ otakushelter_container }}
+      name: "{{ otakushelter_container }}"
       state: present
       image: "{{ otakushelter_image }}:1.0.{{ otakushelter_build_number }}"
