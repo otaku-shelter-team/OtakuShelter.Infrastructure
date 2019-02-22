@@ -9,6 +9,7 @@
   - name: Stopping {{ otakushelter_container }} container
     docker_container:
       name: "{{ otakushelter_container }}"
+      image: "{{ otakushelter_image }}:1.0.{{ otakushelter_prev_build_number }}"
       state: stopped
 
   - name: Remove {{ otakushelter_image }}:1.0.{{ otakushelter_prev_build_number }} image
