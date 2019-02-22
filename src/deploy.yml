@@ -6,9 +6,9 @@
     set_fact: 
       otakushelter_prev_build_number: "{{ otakushelter_build_number | int - 1 }}"
 
-  - name: Stopping {{ otakushelter_container }} container
+  - name: Stopping {{ otakushelter_image }} container
     docker_container:
-      name: "{{ otakushelter_container }}"
+      name: "{{ otakushelter_image }}"
       image: "{{ otakushelter_image }}:1.0.{{ otakushelter_prev_build_number }}"
       state: stopped
 
@@ -20,6 +20,6 @@
 
   - name: Container present
     docker_container:
-      name: "{{ otakushelter_container }}"
-      state: present
+      name: "{{ otakushelter_image }}"
       image: "{{ otakushelter_image }}:1.0.{{ otakushelter_build_number }}"
+      state: present
