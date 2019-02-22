@@ -1,2 +1,5 @@
 [profiles]
 profile1 ansible_host=profile.otaku-shelter.ru
+
+[accounts]
+account1 ansible_host=account.otaku-shelter.ru
