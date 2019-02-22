@@ -1,5 +1,11 @@
 [profiles]
-profile1 ansible_host=profile.otaku-shelter.ru
+profile1    ansible_host=profile.otaku-shelter.ru
 
 [accounts]
-account1 ansible_host=account.otaku-shelter.ru
+account1    ansible_host=account.otaku-shelter.ru
+
+[mangas]
+manga1      ansible_host=manga.otaku-shelter.ru
+
+[frontends]
+frontend1   ansible_host=otaku-shelter.ru
