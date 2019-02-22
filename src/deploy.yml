@@ -19,8 +19,8 @@
       force: true
       state: absent
 
-  - name: Container present
+  - name: Start {{ otakushelter_container }} from {{ otakushelter_image }}:1.0.{{ otakushelter_build_number }} container
     docker_container:
       name: "{{ otakushelter_container }}"
-      state: present
       image: "{{ otakushelter_image }}:1.0.{{ otakushelter_build_number }}"
+      state: started
