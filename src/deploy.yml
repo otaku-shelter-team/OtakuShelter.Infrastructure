@@ -27,3 +27,4 @@
       state: started
       env:
         OTAKUSHELTER:DATABASE:PASSWORD: "{{ otakushelter_database_password }}"
+        OTAKUSHELTER:SECRET: "{{ otakushelter_secret }}"
