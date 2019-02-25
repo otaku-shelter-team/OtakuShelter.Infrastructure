@@ -9,3 +9,6 @@ manga1      ansible_host=manga.otaku-shelter.ru
 
 [frontends]
 frontend1   ansible_host=otaku-shelter.ru
+
+[healths]
+health1     ansible_host=health.otaku-shelter.ru
