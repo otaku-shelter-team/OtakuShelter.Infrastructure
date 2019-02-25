@@ -26,5 +26,5 @@
       ports: "127.0.0.1:{{ otakushelter_port }}:80"
       state: started
       env:
-        OTAKUSHELTER:DATABASE:PASSWORD: "{{ otakushelter_database_password }}"
-        OTAKUSHELTER:SECRET: "{{ otakushelter_secret }}"
+        OTAKUSHELTER:DATABASE:PASSWORD: "{{ otakushelter_database_password | default('') }}"
+        OTAKUSHELTER:SECRET: "{{ otakushelter_secret | default('') }}"
