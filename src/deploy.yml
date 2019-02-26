@@ -31,7 +31,7 @@
 
   - name: Configure nginx
     template:
-      src: templates/nginx.conf.js
+      src: templates/nginx.conf.j2
       dest: /etc/nginx/sites-avaliable/{{ otakushelter_nginx_config }}
       notify: Restart nginx
 
