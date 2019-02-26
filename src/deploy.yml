@@ -33,14 +33,14 @@
     template:
       src: templates/nginx.conf.j2
       dest: /etc/nginx/sites-avaliable/{{ otakushelter_nginx_config }}
-      notify: Restart nginx
+    notify: Restart nginx
 
   - name: Enable {{ otakushelter_nginx_config }} config
     file:
       src: /etc/nginx/sites-available/{{ otakushelter_nginx_config }}
       dest: /etc/nginx/sites-enabled/{{ otakushelter_nginx_config }}
       state: link
-      notify: Restart nginx
+    notify: Restart nginx
 
   handlers:
   - name: Restart nginx
