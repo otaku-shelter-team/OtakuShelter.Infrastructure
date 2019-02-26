@@ -1,0 +1,15 @@
+os: linux
+dist: trusty
+cache: false
+sudo: required
+language: bash
+
+addons:
+  apt:
+    packages:
+    - sshpass
+    
+script:
+- |
+  sudo sshpass -p $ANSIBLE_PASSWORD ssh -o StrictHostKeyChecking=no $ANSIBLE_CONNECTION \
+    "cd OtakuShelter.Infrastructure && git pull"
