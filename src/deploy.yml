@@ -19,7 +19,7 @@
       force: true
       state: absent
 
-  - name: Start {{ otakushelter_container }} from {{ otakushelter_image }}:1.0.{{ otakushelter_build_number }} container
+  - name: Start container {{ otakushelter_container }} from {{ otakushelter_image }}:1.0.{{ otakushelter_build_number }}
     docker_container:
       name: "{{ otakushelter_container }}"
       image: "{{ otakushelter_image }}:1.0.{{ otakushelter_build_number }}"
@@ -28,3 +28,22 @@
       env:
         OTAKUSHELTER:DATABASE:PASSWORD: "{{ otakushelter_database_password | default('') }}"
         OTAKUSHELTER:SECRET: "{{ otakushelter_secret | default('') }}"
+
+  - name: Configure nginx
+    template:
+      src: templates/nginx.conf.js
+      dest: /etc/nginx/sites-avaliable/{{ otakushelter_nginx_config }}
+      notify: Restart nginx
+
+  - name: Enable {{ otakushelter_nginx_config }} config
+    file:
+      src: /etc/nginx/sites-available/{{ otakushelter_nginx_config }}
+      dest: /etc/nginx/sites-enabled/{{ otakushelter_nginx_config }}
+      state: link
+      notify: Restart nginx
+
+  handlers:
+  - name: Restart nginx
+    service:
+      name: nginx
+      state: restarted
