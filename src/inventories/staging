@@ -12,3 +12,6 @@ frontend1   ansible_host=otaku-shelter.ru
 
 [healths]
 health1     ansible_host=health.otaku-shelter.ru
+
+[errors]
+error1     ansible_host=error.otaku-shelter.ru
