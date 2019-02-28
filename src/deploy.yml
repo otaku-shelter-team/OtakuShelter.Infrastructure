@@ -27,6 +27,7 @@
       state: started
       env:
         OTAKUSHELTER:DATABASE:PASSWORD: "{{ otakushelter_database_password | default('') }}"
+        OTAKUSHELTER:RABBITMQ:PASSWORD: "{{ otakushelter_rabbitmq_password | default('') }}"
         OTAKUSHELTER:SECRET: "{{ otakushelter_secret | default('') }}"
 
   - name: Configure nginx
