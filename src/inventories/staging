@@ -1,20 +1,23 @@
 [profiles]
-profile1    ansible_host=profile.otaku-shelter.ru
+profile1    ansible_host=profiles.staging.otaku-shelter.ru
 
 [accounts]
-account1    ansible_host=account.otaku-shelter.ru
+account1    ansible_host=accounts.staging.otaku-shelter.ru
 
 [mangas]
-manga1      ansible_host=manga.otaku-shelter.ru
+manga1      ansible_host=mangas.staging.otaku-shelter.ru
 
 [frontends]
-frontend1   ansible_host=otaku-shelter.ru
+frontend1   ansible_host=staging.otaku-shelter.ru
 
-[healths]
-health1     ansible_host=health.otaku-shelter.ru
+[healthchecks]
+health1     ansible_host=healthchecks.staging.otaku-shelter.ru
 
 [errors]
-error1     ansible_host=error.otaku-shelter.ru
+error1     ansible_host=errors.stating.otaku-shelter.ru
+
+[reviews]
+review1     ansible_host=reviews.staging.otaku-shelter.ru
 
 [loadbalancers]
-loadbalancer1   ansible_host=loadbalancer.otaku-shelter.ru
+loadbalancer1   ansible_host=loadbalancers.staging.otaku-shelter.ru
