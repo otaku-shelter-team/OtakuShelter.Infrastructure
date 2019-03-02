@@ -1,4 +1,13 @@
 ---
+# otakushelter_hosts              profiles
+# otakushelter_build_number       $TRAVIS_BUILD_NUMBER
+# otakushelter_image              otakushelter/profile
+# otakushelter_port               4003
+# otakushelter_database_password  $OTAKUSHELTER_DATABASE_PASSWORD
+# otakushelter_rabbitmq_password  $OTAKUSHELTER_RABBITMQ_PASSWORD
+# otakushelter_secret             $OTAKUSHELTER_SECRET
+# otakushelter_nginx_server_name  profile.otaku-shelter.ru
+
 - hosts: "{{ otakushelter_hosts }}"
   gather_facts: false
   tasks:
@@ -6,22 +15,21 @@
     set_fact: 
       otakushelter_prev_build_number: "{{ otakushelter_build_number | int - 1 }}"
 
-  - name: Stopping {{ otakushelter_container }} container
+  - name: Pulling {{ otakushelter_image }}:1.0.{{ otakushelter_build_number }} image
+    docker_image:
+      name: "{{ otakushelter_image }}"
+      tag: "1.0.{{ otakushelter_build_number }}"
+      state: present
+
+  - name: Stopping {{ otakushelter_hosts }} container
     docker_container:
-      name: "{{ otakushelter_container }}"
+      name: "{{ otakushelter_hosts }}"
       image: "{{ otakushelter_image }}:1.0.{{ otakushelter_prev_build_number }}"
       state: absent
 
-  - name: Remove {{ otakushelter_image }}:1.0.{{ otakushelter_prev_build_number }} image
-    docker_image:
-      name: "{{ otakushelter_image }}"
-      tag: "1.0.{{ otakushelter_prev_build_number }}"
-      force: true
-      state: absent
-
-  - name: Start container {{ otakushelter_container }} from {{ otakushelter_image }}:1.0.{{ otakushelter_build_number }}
+  - name: Start container {{ otakushelter_hosts }} from {{ otakushelter_image }}:1.0.{{ otakushelter_build_number }}
     docker_container:
-      name: "{{ otakushelter_container }}"
+      name: "{{ otakushelter_hosts }}"
       image: "{{ otakushelter_image }}:1.0.{{ otakushelter_build_number }}"
       ports: "127.0.0.1:{{ otakushelter_port }}:80"
       state: started
@@ -30,16 +38,26 @@
         OTAKUSHELTER:RABBITMQ:PASSWORD: "{{ otakushelter_rabbitmq_password | default('') }}"
         OTAKUSHELTER:SECRET: "{{ otakushelter_secret | default('') }}"
 
-  - name: Configure nginx
+  - name: Remove {{ otakushelter_image }}:1.0.{{ otakushelter_prev_build_number }} image
+    docker_image:
+      name: "{{ otakushelter_image }}"
+      tag: "1.0.{{ otakushelter_prev_build_number }}"
+      force: true
+      state: absent
+
+- hosts: loadbalancers
+  gather_facts: false
+  tasks:
+  - name: Configure {{ otakushelter_hosts }} nginx config
     template:
       src: templates/nginx.conf.j2
-      dest: /etc/nginx/sites-available/{{ otakushelter_nginx_config }}
+      dest: /etc/nginx/sites-available/{{ otakushelter_hosts }}
     notify: Restart nginx
 
-  - name: Enable {{ otakushelter_nginx_config }} config
+  - name: Enable {{ otakushelter_hosts }} nginx config
     file:
-      src: /etc/nginx/sites-available/{{ otakushelter_nginx_config }}
-      dest: /etc/nginx/sites-enabled/{{ otakushelter_nginx_config }}
+      src: /etc/nginx/sites-available/{{ otakushelter_hosts }}
+      dest: /etc/nginx/sites-enabled/{{ otakushelter_hosts }}
       state: link
     notify: Restart nginx
 

@@ -1,9 +1,15 @@
+upstream {{ otakushelter_hosts }} {
+  {% for server in groups[otakushelter_hosts] %}
+      server {{ server }}:{{ otakushelter_port }};
+  {% endfor %}
+}
+
 server {
   listen 80;
-  server_name {{ otakushelter_nginx_server_name }};
+  server_name {{ otakushelter_server_name }};
 
   location / {
-    proxy_pass         {{ otakushelter_nginx_proxy_pass }};
+    proxy_pass         http://{{ otakushelter_hosts }};
     proxy_http_version 1.1;
     proxy_set_header   Upgrade $http_upgrade;
     proxy_set_header   Connection keep-alive;

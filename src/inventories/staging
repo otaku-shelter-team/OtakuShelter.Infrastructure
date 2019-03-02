@@ -15,3 +15,6 @@ health1     ansible_host=health.otaku-shelter.ru
 
 [errors]
 error1     ansible_host=error.otaku-shelter.ru
+
+[loadbalancers]
+loadbalancer1   ansible_host=loadbalancer.otaku-shelter.ru
