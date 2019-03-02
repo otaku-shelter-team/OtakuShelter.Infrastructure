@@ -36,7 +36,7 @@
       env:
         OTAKUSHELTER:DATABASE:PASSWORD: "{{ otakushelter_database_password | default('') }}"
         OTAKUSHELTER:RABBITMQ:PASSWORD: "{{ otakushelter_rabbitmq_password | default('') }}"
-        OTAKUSHELTER:SECRET: "{{ otakushelter_secret | default('') }}"
+        OTAKUSHELTER:JWT:SECRET: "{{ otakushelter_jwt_secret | default('') }}"
 
   - name: Remove {{ otakushelter_image }}:1.0.{{ otakushelter_prev_build_number }} image
     docker_image:
