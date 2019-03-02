@@ -14,7 +14,7 @@ frontend1   ansible_host=staging.otaku-shelter.ru
 health1     ansible_host=healthchecks.staging.otaku-shelter.ru
 
 [errors]
-error1     ansible_host=errors.stating.otaku-shelter.ru
+error1     ansible_host=errors.staging.otaku-shelter.ru
 
 [reviews]
 review1     ansible_host=reviews.staging.otaku-shelter.ru
