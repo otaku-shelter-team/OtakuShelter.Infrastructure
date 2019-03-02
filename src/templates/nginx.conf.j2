@@ -1,6 +1,6 @@
 upstream {{ otakushelter_hosts }} {
   {% for server in groups[otakushelter_hosts] %}
-      server {{ server }}:{{ otakushelter_port }};
+      server {{ hostvars[server].ansible_host }}:{{ otakushelter_port }};
   {% endfor %}
 }
 
