@@ -31,7 +31,7 @@
     docker_container:
       name: "{{ otakushelter_hosts }}"
       image: "{{ otakushelter_image }}:1.0.{{ otakushelter_build_number }}"
-      ports: "127.0.0.1:{{ otakushelter_port }}:80"
+      ports: "{{ otakushelter_port }}:80" #127.0.0.1:
       state: started
       env:
         OTAKUSHELTER:DATABASE:PASSWORD: "{{ otakushelter_database_password | default('') }}"
