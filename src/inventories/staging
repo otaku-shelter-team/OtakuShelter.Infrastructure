@@ -21,3 +21,6 @@ review1     ansible_host=reviews.staging.otaku-shelter.ru
 
 [loadbalancers]
 loadbalancer1   ansible_host=loadbalancers.staging.otaku-shelter.ru
+
+[parsers]
+parser1         ansible_host=212.109.197.243
